@@ -1,24 +1,19 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=Tajawal:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-/* ── Reset & Layout Safety ───────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
 
-html, body, #root {
+/* Update your index.css */
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+  height: 100%; /* Ensure full height */
+  overflow-x: hidden; /* Only hide horizontal */
+  overflow-y: auto;   /* Allow vertical scrolling on the body only */
   background-color: #05070c;
-}
-
-body {
   color: #e2e8f0;
   font-family: 'Tajawal', 'Cairo', sans-serif;
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 1.6;
   /* الخلفية المنقطة الشبكية المحسنة */
   background-image: radial-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px);
@@ -26,20 +21,9 @@ body {
 }
 
 /* ── Navigation ───────────────────────────────────── */
-nav a {
-  color: #94a3b8;
-  transition: color 0.25s ease;
-  text-decoration: none;
-}
+
 nav a:hover { 
   color: #60a5fa; 
-}
-
-/* ── Card Laser Animation ─────────────────────────── */
-.card-hover {
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s ease;
 }
 
 .card-hover::before {
@@ -59,8 +43,8 @@ nav a:hover {
   animation: laserSweep 5s linear infinite;
   pointer-events: none;
 }
-.card-hover:nth-child(2n)::before { animation-delay: 1.6s; }
-.card-hover:nth-child(3n)::before { animation-delay: 3.2s; }
+/* .card-hover:nth-child(2n)::before { animation-delay: 1.6s; }
+.card-hover:nth-child(3n)::before { animation-delay: 3.2s; } */
 
 @keyframes laserSweep {
   0%   { left: -100%; }
@@ -76,38 +60,10 @@ nav a:hover {
   transition: background-color 0.2s ease;
 }
 
-footer {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  width: 100% !important;
-  max-width: 64rem !important; /* نفس الـ max-w-5xl ديال الهيدر */
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
+#root {
+  width:100%;
+  min-height:100vh;
+  overflow:visible;
 }
 
-/* ضبط اللوغو والكتابة اللي حداه لتحت */
-footer > div:first-child {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.75rem !important; /* نفس الـ gap-3 اللي الفوق */
-}
-
-.gap-3{
-  align-items: center !important;
-  gap: 0.75rem !important; /* نفس الـ gap-3 اللي الفوق */
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  width: 100% !important;
-  max-width: 64rem !important; /* نفس الـ max-w-5xl ديال الهيدر */
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
-}
 
