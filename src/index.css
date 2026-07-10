@@ -35,7 +35,6 @@ html, body {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
   width: 40%;
   height: 2px;
   background: linear-gradient(
@@ -47,14 +46,15 @@ html, body {
   );
   animation: laserSweep 5s linear infinite;
   pointer-events: none;
+  transform: translateX(-100%); /* Start from left */
 }
 /* .card-hover:nth-child(2n)::before { animation-delay: 1.6s; }
 .card-hover:nth-child(3n)::before { animation-delay: 3.2s; } */
 
 @keyframes laserSweep {
   0%   { left: -100%; }
-  40%  { left: 110%; }
-  100% { left: 110%; }
+  40%  { left: 100%; }
+  100% { left: 100%; }
 }
 
 /* ── Buttons Base Transitions ─────────────────────── */
