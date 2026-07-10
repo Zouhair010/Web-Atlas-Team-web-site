@@ -4,6 +4,7 @@
 
 /* Update your index.css */
 html, body {
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -20,18 +21,22 @@ html, body {
   background-size: 24px 24px;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
 /* ── Navigation ───────────────────────────────────── */
 
-nav a:hover { 
+/* nav a:hover { 
   color: #60a5fa; 
-}
+} */
 
 .card-hover::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
-  width: 60%;
+  width: 40%;
   height: 2px;
   background: linear-gradient(
     90deg,
@@ -66,4 +71,22 @@ nav a:hover {
   overflow:visible;
 }
 
+/* Prevent horizontal scrolling on mobile */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for mobile viewport */
+@media (max-width: 768px) {
+  .header-logo {
+    max-width: 150px !important;
+  }
+}
 
