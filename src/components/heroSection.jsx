@@ -52,7 +52,7 @@ function HeroSection({fadeUp, btnPrimaryHover, lang}){
                 href="#projects" 
                 style={{
                   fontFamily: "'Cairo', sans-serif",
-                  fontSize: "18px",
+                  fontSize: "15px",
                   fontWeight: 700,
                   background: "linear-gradient(90deg, #f8fafc 0%, #cbd5e1 50%, #93c5fd 100%)",
                   WebkitBackgroundClip: "text",

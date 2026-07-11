@@ -1,7 +1,7 @@
 import data from './data';
-import MotionLink from './motionLink';
+import { motion } from 'framer-motion';
 
-function ContactInfo({lang}){
+function ContactInfo({lang, btnPrimaryHover}){
   return (
     <div className="lg:col-span-5 flex flex-col justify-between">
               <div>
@@ -19,10 +19,79 @@ function ContactInfo({lang}){
                 <p className="text-slate-400 text-sm sm:text-base leading-relaxed">{data["contactInfoContent"][lang]["description"]}</p>
               </div>
               <div className="mt-12 space-y-4 font-['JetBrains_Mono'] text-xs sm:text-sm text-slate-500 border-t border-slate-800/60 pt-8">
-                <MotionLink name={data["socialLinks"][lang]["name1"]} link={data["socialLinks"][lang]["link1"]}/>
-                <MotionLink name={data["socialLinks"][lang]["name2"]} link={data["socialLinks"][lang]["link2"]}/> 
-                <MotionLink name={data["socialLinks"][lang]["name3"]} link={data["socialLinks"][lang]["link3"]}/>  
-                <MotionLink name={data["socialLinks"][lang]["name4"]} link={data["socialLinks"][lang]["link4"]}/>            
+                <div className="flex items-center gap-3">
+                <motion.a style={{
+                fontFamily: "'Cairo', sans-serif",
+                fontSize: "15px",
+                fontWeight: 700,
+                background: "linear-gradient(90deg, #f8fafc 0%, #cbd5e1 50%, #93c5fd 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                whiteSpace: "nowrap"
+                }}
+                className="btn-primary bg-blue-600 hover:bg-blue-500 text-white px-7 py-3.5 rounded-xl text-sm font-semibold shadow-lg shadow-blue-600/25 inline-block" 
+                {...btnPrimaryHover}
+                            href= {data["socialLinks"][lang]["link1"]}
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                          >
+                            {data["socialLinks"][lang]["name1"]}
+                          </motion.a></div>
+                <div className="flex items-center gap-3">
+                <motion.a style={{
+                fontFamily: "'Cairo', sans-serif",
+                fontSize: "15px",
+                fontWeight: 700,
+                background: "linear-gradient(90deg, #f8fafc 0%, #cbd5e1 50%, #93c5fd 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                whiteSpace: "nowrap"
+                }}
+                className="btn-primary bg-blue-600 hover:bg-blue-500 text-white px-7 py-3.5 rounded-xl text-sm font-semibold shadow-lg shadow-blue-600/25 inline-block" 
+                {...btnPrimaryHover}
+                            href= {data["socialLinks"][lang]["link2"]}
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                          >
+                            {data["socialLinks"][lang]["name2"]}
+                          </motion.a></div>
+                <div className="flex items-center gap-3">
+                <motion.a style={{
+                fontFamily: "'Cairo', sans-serif",
+                fontSize: "15px",
+                fontWeight: 700,
+                background: "linear-gradient(90deg, #f8fafc 0%, #cbd5e1 50%, #93c5fd 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                whiteSpace: "nowrap"
+                }}
+                className="btn-primary bg-blue-600 hover:bg-blue-500 text-white px-7 py-3.5 rounded-xl text-sm font-semibold shadow-lg shadow-blue-600/25 inline-block" 
+                {...btnPrimaryHover}
+                            href= {data["socialLinks"][lang]["link3"]}
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                          >
+                            {data["socialLinks"][lang]["name3"]}
+                          </motion.a></div>
+                <div className="flex items-center gap-3">
+                <motion.a style={{
+                fontFamily: "'Cairo', sans-serif",
+                fontSize: "15px",
+                fontWeight: 700,
+                background: "linear-gradient(90deg, #f8fafc 0%, #cbd5e1 50%, #93c5fd 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                whiteSpace: "nowrap"
+                }}
+                className="btn-primary bg-blue-600 hover:bg-blue-500 text-white px-7 py-3.5 rounded-xl text-sm font-semibold shadow-lg shadow-blue-600/25 inline-block" 
+                {...btnPrimaryHover}
+                            href= {data["socialLinks"][lang]["link4"]}
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                          >
+                            {data["socialLinks"][lang]["name4"]}
+                          </motion.a></div>
+                
                 <div className="flex items-center gap-3"><span className="text-blue-400 text-base">{data["socialLinks"][lang]["location"]}</span></div>
                 <div className="flex items-center gap-3"><span className="text-blue-400 text-base">📧webatlas010@gmail.com</span></div>
                 <div className="flex items-center gap-3"><span className="text-green-400 text-base">{data["socialLinks"][lang]["support"]}</span></div>

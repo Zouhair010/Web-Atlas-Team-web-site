@@ -32,7 +32,7 @@ function Contact({ setIsSuccess, btnPrimaryHover, lang}) {
         <div className="lg:col-span-7">
               <form className="space-y-5" onSubmit={handleContactSubmit}>
                 <div className="grid sm:grid-cols-2 gap-5">
-                  <input 
+                  <motion.input 
                    type="text" 
                    name="name" 
                    required 
@@ -41,8 +41,9 @@ function Contact({ setIsSuccess, btnPrimaryHover, lang}) {
                    style={{ border: '1px solid rgba(255, 255, 255, 0.4)' }}
                    className="w-full bg-[#05070f] rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
                    placeholder={data["contactContent"][lang]["name"]} 
+                   {...btnPrimaryHover}
                    />
-                  <input 
+                  <motion.input 
                     type="email" 
                     name="email" 
                     required 
@@ -51,9 +52,10 @@ function Contact({ setIsSuccess, btnPrimaryHover, lang}) {
                     style={{ border: '1px solid rgba(255, 255, 255, 0.4)' }}
                     className="w-full bg-[#05070f] rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
                     placeholder={data["contactContent"][lang]["email"]} 
+                    {...btnPrimaryHover}
                   />
                 </div>
-                <textarea 
+                <motion.textarea 
                   rows={5} 
                   name="message" 
                   required 
@@ -62,6 +64,7 @@ function Contact({ setIsSuccess, btnPrimaryHover, lang}) {
                   style={{ border: '1px solid rgba(255, 255, 255, 0.4)' }}
                   className="w-full bg-[#05070f] rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
                   placeholder={data["contactContent"][lang]["message"]}
+                  {...btnPrimaryHover}
                 />
                 
                 {/* الحاوية المحدثة لمنح زر الإرسال مسافة إضافية */}
@@ -85,4 +88,5 @@ function Contact({ setIsSuccess, btnPrimaryHover, lang}) {
             </div>
     )
 }
+
 export default Contact;

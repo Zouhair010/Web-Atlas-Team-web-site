@@ -40,13 +40,6 @@ const btnPrimaryHover = {
   transition: { duration: 0.25, ease: [0.25, 1, 0.5, 1] }
 };
 
-// تأثير الأزرار الثانوية
-const btnSecondaryHover = {
-  whileHover: { y: -3, scale: 1.04 },
-  whileTap: { scale: 0.96 },
-  transition: { duration: 0.25, ease: [0.25, 1, 0.5, 1] }
-};
-
 /* ── المكون الرئيسي للموقع (Main App Component) ── */
 export default function App() {
   
@@ -72,7 +65,7 @@ export default function App() {
       {/* تأثير التوهج الخلفي الكبير الملون (Glow Layer) */}
 
       {/* ── القائمة العلوية الثابتة (Navbar) ───────────────────────────────────── */}
-      <Header webAtlasLogo={webAtlasLogo} lang={lang} setLang={setLang} />
+      <Header webAtlasLogo={webAtlasLogo} lang={lang} setLang={setLang} btnPrimaryHover={btnPrimaryHover} />
 
       {/* ── الحاوية المركزية للمحتوى (Main Content Wrapper) ───────── */}
       <main className="w-full max-w-7xl z-10 flex flex-col gap-40 mt-24 mx-auto">

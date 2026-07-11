@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { nav } from "framer-motion/client";
+import { motion } from "framer-motion";
 import data from './data';
 
 
-function Header({ webAtlasLogo, lang, setLang}) {
+function Header({ webAtlasLogo, lang, setLang, btnPrimaryHover}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -27,18 +28,22 @@ function Header({ webAtlasLogo, lang, setLang}) {
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <img
-          src={webAtlasLogo}
-          style={{
-            height: "100px",
-            objectFit: "contain",
-          }}
-          alt="WebAtlas Logo"
+        <motion.img
+        src={webAtlasLogo}
+        alt="WebAtlas Logo"
+        style={{
+        height: "100px",
+        objectFit: "contain",
+        cursor: "pointer",
+        }}
+        className="btn-primary bg-blue-600 hover:bg-blue-500 text-white px-7 py-3.5 rounded-xl text-sm font-semibold shadow-lg shadow-blue-600/25 inline-block" 
+                {...btnPrimaryHover}
         />
+
 
         <div className="flex items-center gap-4">
         {/* الزر */}
-        <button
+        <motion.button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         style={{
         background: "transparent",
@@ -50,12 +55,13 @@ function Header({ webAtlasLogo, lang, setLang}) {
        }}
        onMouseEnter={(e) => e.target.style.color = "#4361cc"}
        onMouseLeave={(e) => e.target.style.color = "white"}
+       {...btnPrimaryHover}
       >
     <IoAddCircleOutline fontSize='40px' />
-    </button>
+    </motion.button>
 
     {/* قائمة اختيار اللغة */}
-    <select
+    <motion.select
     value={lang}
     onChange={(e) => setLang(e.target.value)}
     style={{ 
@@ -65,6 +71,7 @@ function Header({ webAtlasLogo, lang, setLang}) {
     }}
     onMouseEnter={(e) => e.target.style.color = "#4361cc"}
     onMouseLeave={(e) => e.target.style.color = "white"}
+    {...btnPrimaryHover}
     className="bg-[#2a2926] border border-[#d4af37]/20 text-[#d4af37] text-xs font-semibold rounded-sm focus:outline-none focus:ring-1 focus:ring-[#d4af37]"
   >
     {['ar', 'en', 'fr'].map((l) => (
@@ -72,7 +79,7 @@ function Header({ webAtlasLogo, lang, setLang}) {
         {l.toUpperCase()}
       </option>
     ))}
-  </select>
+  </motion.select>
   </div>
       </header>
 
