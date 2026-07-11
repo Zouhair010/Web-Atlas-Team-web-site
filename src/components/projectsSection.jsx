@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import PROJECTS from "./projects";
+import data from "./data";
+
 // تأثير حركي فخم عند تمرير الماوس فوق الكروت (ارتفاع خفيف + توهج أزرق)
 const cardHover = {
   whileHover: {
@@ -10,7 +11,7 @@ const cardHover = {
   whileTap: { scale: 0.99 },
   transition: { duration: 0.35, ease: [0.25, 1, 0.5, 1] }
 };
-function ProjectsSection(fadeUp, sectionVariant){
+function ProjectsSection({fadeUp, sectionVariant, lang}){
     return(
         <motion.section style={{ justifyContent: 'space-between',
                    alignItems: 'center', padding: '18px 20px 14px',
@@ -25,13 +26,13 @@ function ProjectsSection(fadeUp, sectionVariant){
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       whiteSpace: "nowrap"
-                    }} className="text-[11px] font-['JetBrains_Mono'] tracking-widest text-amber-300 bg-amber-500/5 px-2.5 py-1 rounded border border-amber-500/10">أعمال مختارة</span>
-                    <h2 className="font-['Cairo'] text-3xl sm:text-4xl md:text-5xl font-black mt-4 text-white">مشاريع طُوّرت بإتقان هندسي</h2>
+                    }} className="text-[11px] font-['JetBrains_Mono'] tracking-widest text-amber-300 bg-amber-500/5 px-2.5 py-1 rounded border border-amber-500/10">{data["projectsContent"][lang]["badge"]}</span>
+                    <h2 className="font-['Cairo'] text-3xl sm:text-4xl md:text-5xl font-black mt-4 text-white">{data["projectsContent"][lang]["title"]}</h2>
                   </div>
         
                   {/* عرض المشاريع */}
                   <div style={{ justifyContent: 'space-between', alignItems: 'center', padding: '18px 20px 14px'}} className="grid md:grid-cols-2 gap-8">
-                    {PROJECTS.map((project, i) => (
+                    {data["projectsContent"][lang]["projectsList"].map((project, i) => (
                       <motion.div key={i} custom={i} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} {...cardHover} className="card-hover bg-[#080c16]/60 border border-slate-800/60 hover:border-blue-500/30 rounded-2xl flex flex-col overflow-hidden shadow-xl">
                         <div className="h-56 sm:h-64 w-full overflow-hidden relative">
                           <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-75 hover:scale-105 transition-transform duration-700" />

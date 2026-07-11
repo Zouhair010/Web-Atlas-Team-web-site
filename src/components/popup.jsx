@@ -23,7 +23,7 @@ function Popup({ isOpen, onClose }) {
           boxShadow: "0 40px 90px rgba(0,0,0,0.7), 0 0 40px rgba(59,130,246,0.12)",
           zIndex: 99999,
         }}
-      >
+      >￼
         <div style={{ height: "4px", background: "linear-gradient(90deg,#2563eb,#60a5fa,#fbbf24)" }} />
         <div style={{ padding: "40px 36px 36px", direction: "rtl" }}>
           <div style={{

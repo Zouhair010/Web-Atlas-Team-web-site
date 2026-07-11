@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import SERVICES from "./services";
+import data from './data';
+
 // تأثير حركي فخم عند تمرير الماوس فوق الكروت (ارتفاع خفيف + توهج أزرق)
 const cardHover = {
   whileHover: {
@@ -11,14 +12,13 @@ const cardHover = {
   transition: { duration: 0.35, ease: [0.25, 1, 0.5, 1] }
 };
 
-function ServicesSection(fadeUp, sectionVariant){
+function ServicesSection({fadeUp, sectionVariant, lang}){
     return(
                 <motion.section style={{
                    justifyContent: 'space-between', alignItems: 'center',
                    padding: '18px 20px 14px',
                    borderBottom: '1px solid #f5f5f4',
                    scrollMarginTop: "155px" }}// Controls where scrolling stops for this section
-
                    id="services" className="w-full border-t border-blue-500/10 pt-24" variants={sectionVariant} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.15 }}>
                   <div className="mb-16">
                     <span style={{
@@ -29,14 +29,14 @@ function ServicesSection(fadeUp, sectionVariant){
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       whiteSpace: "nowrap"
-                    }} className="text-[11px] font-['JetBrains_Mono'] tracking-widest text-blue-300 bg-blue-500/5 px-2.5 py-1 rounded border border-blue-500/10">ماذا نقدم</span>
-                    <h2 className="font-['Cairo'] text-3xl sm:text-4xl md:text-5xl font-black mt-4 text-white">خدماتنا الاحترافية</h2>
-                    <p className="text-slate-400 text-sm md:text-base mt-4 max-w-xl leading-relaxed">حلول رقمية متكاملة، من الفكرة إلى الإطلاق الفعلي — مبنية بدقة وعناية لتضمن الاستدامة.</p>
+                    }} className="text-[11px] font-['JetBrains_Mono'] tracking-widest text-blue-300 bg-blue-500/5 px-2.5 py-1 rounded border border-blue-500/10">{data["servicesContent"][lang]["badge"]}</span>
+                    <h2 className="font-['Cairo'] text-3xl sm:text-4xl md:text-5xl font-black mt-4 text-white">{data["servicesContent"][lang]["title"]}</h2>
+                    <p className="text-slate-400 text-sm md:text-base mt-4 max-w-xl leading-relaxed">{data["servicesContent"][lang]["description"]}</p>
                   </div>
         
                   {/* توليد كروت الخدمات عبر عمل Loop لمصفوفة الخدمات */}
                   <div style={{ justifyContent: 'space-between', alignItems: 'center', padding: '18px 20px 14px'}} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {SERVICES.map((service, i) => (
+                    {data["servicesContent"][lang]["servicesList"].map((service, i) => (
                       <motion.div key={i} custom={i} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} {...cardHover} className="card-hover bg-[#080c16]/70 border border-slate-800/60 hover:border-blue-500/30 rounded-2xl p-7 flex flex-col gap-5">
                         <div className="text-4xl">{service.icon}</div>
                         <div>

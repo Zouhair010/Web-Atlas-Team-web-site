@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
+import { Send } from 'lucide-react';
+import data from './data';
 
-function Contact({ setIsSuccess, btnPrimaryHover }) {
+function Contact({ setIsSuccess, btnPrimaryHover, lang}) {
     // الحالات (States) لمراقبة الإرسال، النجاح، وحالة النزول في الصفحة
     const [isSubmitting, setIsSubmitting] = useState(false);
     // دالة التعامل مع إرسال الفورم إلى Formspree
@@ -31,32 +33,35 @@ function Contact({ setIsSuccess, btnPrimaryHover }) {
               <form className="space-y-5" onSubmit={handleContactSubmit}>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <input 
-                    type="text" 
-                    name="name" 
-                    required 
-                    onInvalid={(e) => e.target.setCustomValidity('يرجى ملء هذا الحقل لإدخال الاسم الكامل.')}
+                   type="text" 
+                   name="name" 
+                   required 
+                   onInvalid={(e) => e.target.setCustomValidity(data["contactContent"][lang]["validName"])}
                     onInput={(e) => e.target.setCustomValidity('')}
-                    className="w-full bg-[#05070f] border border-slate-800/70 hover:border-slate-700 rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors" 
-                    placeholder="الاسم الكامل" 
-                  />
+                   style={{ border: '1px solid rgba(255, 255, 255, 0.4)' }}
+                   className="w-full bg-[#05070f] rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+                   placeholder={data["contactContent"][lang]["name"]} 
+                   />
                   <input 
                     type="email" 
                     name="email" 
                     required 
-                    onInvalid={(e) => e.target.setCustomValidity('يرجى إدخال عنوان بريد إلكتروني صالح.')}
+                    onInvalid={(e) => e.target.setCustomValidity(data["contactContent"][lang]["validEmail"])}
                     onInput={(e) => e.target.setCustomValidity('')}
-                    className="w-full bg-[#05070f] border border-slate-800/70 hover:border-slate-700 rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors" 
-                    placeholder="البريد الإلكتروني" 
+                    style={{ border: '1px solid rgba(255, 255, 255, 0.4)' }}
+                    className="w-full bg-[#05070f] rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+                    placeholder={data["contactContent"][lang]["email"]} 
                   />
                 </div>
                 <textarea 
                   rows={5} 
                   name="message" 
                   required 
-                  onInvalid={(e) => e.target.setCustomValidity('يرجى كتابة تفاصيل مشروعك هنا.')}
+                  onInvalid={(e) => e.target.setCustomValidity(data["contactContent"][lang]["validMsg"])}
                   onInput={(e) => e.target.setCustomValidity('')}
-                  className="w-full bg-[#05070f] border border-slate-800/70 hover:border-slate-700 rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors resize-none" 
-                  placeholder="أخبرنا عن تفاصيل مشروعك..." 
+                  style={{ border: '1px solid rgba(255, 255, 255, 0.4)' }}
+                  className="w-full bg-[#05070f] rounded-xl px-5 py-3.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors"
+                  placeholder={data["contactContent"][lang]["message"]}
                 />
                 
                 {/* الحاوية المحدثة لمنح زر الإرسال مسافة إضافية */}
@@ -67,15 +72,13 @@ function Contact({ setIsSuccess, btnPrimaryHover }) {
                     className="btn-primary btnPrimaryHoverh-12 px-8 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2" 
                     {...btnPrimaryHover}
                   >
-                    {isSubmitting ? (
+                    {
+                    isSubmitting ? (
                       <>
-                        <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
-                        </svg>
-                        جاري الإرسال...
+                        {data["contactContent"][lang]["sending"]}
                       </>
-                    ) : "إرسال الرسالة ←"}
+                    ) :(<><Send size={20} /> {data["contactContent"][lang]["submit"]} </>)
+                    }
                   </motion.button>
                 </div>
               </form>

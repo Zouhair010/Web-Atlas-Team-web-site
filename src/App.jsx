@@ -5,18 +5,17 @@ import { motion } from 'framer-motion';
 import webAtlasLogo from '/public/webatlasteamlogo.png';
 import { useNavigate } from 'react-router-dom'; // إذا كنت تستخدم React Router، أو يمكنك استخدام window.location مباشرة
 
-import Popup from './popup'; // استيراد مكون البوب أب من ملف منفصل 
-import SKILLS from './skills'; // استيراد مصفوفة المهارات من ملف منفصل   
-import SERVICES from './services'; // استيراد مصفوفة الخدمات من ملف منفصل
-import PROJECTS from './projects'; // استيراد مصفوفة المشاريع من ملف منفصل
+import Popup from './components/popup'; // استيراد مكون البوب أب من ملف منفصل 
 
-import Header from './header';
-import HeroSection from './heroSection';
-import ServicesSection from './servicesSection';
-import ProjectsSection from './projectsSection';
-import SkillsSection from './skillsSection';
-import Footer from './footer';
-import ContactSection from './contactSection';
+
+import Header from './components/header';
+import HeroSection from './components/heroSection';
+import ServicesSection from './components/servicesSection';
+import ProjectsSection from './components/projectsSection';
+import SkillsSection from './components/skillsSection';
+import Footer from './components/footer';
+import ContactSection from './components/contactSection';
+
 
 // تأثير الظهور التدريجي من الأسفل إلى الأعلى لفقرات الهيرو
 const fadeUp = {
@@ -54,6 +53,11 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // let lang = 'ar'
+  const [lang, setLang] = useState('ar'); // 1. استخدام useState هنا
+  // حالة لتخزين الصورة المحددة لعرضها في وضع ملء الشاشة
+  const [selectedImage, setSelectedImage] = useState(null);
+
   // تأثير لمراقبة النزول (Scroll) لتغيير شكل الـ Navbar تلقائياً
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -63,33 +67,33 @@ export default function App() {
 
   return (
     /* الحاوية الكبرى: تمت إضافة (px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20) لضمان مسافة الأمان المستجيبة في الجوانب ومنع الالتصاق نهائياً */
-    <div dir="rtl" className="w-full min-h-screen bg-[#05070c] text-slate-200 antialiased overflow-x-hidden flex flex-col items-center justify-start relative pb-24 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 text-right">
+    <div dir={lang==='ar' ? 'rtl' : 'ltr'} className="w-full min-h-screen bg-[#05070c] text-slate-200 antialiased overflow-x-hidden flex flex-col items-center justify-start relative pb-24 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 text-right">
       
       {/* تأثير التوهج الخلفي الكبير الملون (Glow Layer) */}
 
       {/* ── القائمة العلوية الثابتة (Navbar) ───────────────────────────────────── */}
-      <Header webAtlasLogo={webAtlasLogo}/>
+      <Header webAtlasLogo={webAtlasLogo} lang={lang} setLang={setLang} />
 
       {/* ── الحاوية المركزية للمحتوى (Main Content Wrapper) ───────── */}
       <main className="w-full max-w-7xl z-10 flex flex-col gap-40 mt-24 mx-auto">
         {/* ── قسم الهيرو والتعريف الرئيسي (Hero Section) ─────────────────────────── */}
-        <HeroSection fadeUp={fadeUp} btnPrimaryHover={btnPrimaryHover}/>
+        <HeroSection fadeUp={fadeUp} btnPrimaryHover={btnPrimaryHover} lang={lang} />
 
         {/* ── قسم الخدمات (Services Section) ─────────────────────────── */}
-        <ServicesSection fadeUp={fadeUp} sectionVariant={sectionVariant} />
+        <ServicesSection fadeUp={fadeUp} sectionVariant={sectionVariant} lang={lang} />
 
         {/* ── قسم التكنولوجيات (Skills Section) ───────────────────────────── */}
-        <SkillsSection fadeUp={fadeUp} sectionVariant={sectionVariant} />
+        <SkillsSection fadeUp={fadeUp} sectionVariant={sectionVariant} lang={lang} />
 
         {/* ── قسم الأعمال والمشاريع (Projects Section) ─────────────────────────── */}
-        <ProjectsSection fadeUp={fadeUp} sectionVariant={sectionVariant} />
+        <ProjectsSection fadeUp={fadeUp} sectionVariant={sectionVariant} lang={lang} />
 
         {/* ── استمارة الاتصال (Contact Section) ──────────────────────────── */}
-        <ContactSection setIsSuccess={setIsSuccess} btnPrimaryHover={btnPrimaryHover} sectionVariant={sectionVariant}/>
+        <ContactSection setIsSuccess={setIsSuccess} btnPrimaryHover={btnPrimaryHover} sectionVariant={sectionVariant} lang={lang}/>
 
         {/* ── تذييل الصفحة (Footer) ───────────────────────────────────── */}
         <div align="center" className="w-full max-w-7xl mx-auto px-2 sm:px-0">
-          <Footer />
+          <Footer lang={lang} />
         </div>
       </main>
 
